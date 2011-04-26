@@ -153,7 +153,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         if (p instanceof Message) {
             final Message message = (Message) p;
             if(message.getType() == Message.Type.groupchat) {
-                if(!StringUtils.parseResource(message.getFrom()).equalsIgnoreCase(nickname)) {
+                if(!StringUtils.parseResource(message.getFrom()).equalsIgnoreCase(conf.getString("connection.nickname", "MinecraftBot"))) {
                     String outmsg = ChatColor.GRAY + "[" + ChatColor.DARK_GREEN + "XMPP" + ChatColor.GRAY + "] " + ChatColor.WHITE + StringUtils.parseResource(message.getFrom()) + ": " + message.getBody();
                     sendMCMessage(outmsg);
                     log.info(outmsg);
