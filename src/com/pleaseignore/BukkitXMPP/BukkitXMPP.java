@@ -1,32 +1,24 @@
 package com.pleaseignore.BukkitXMPP;
 
 import java.io.File;
-import java.util.logging.Logger;
-import java.util.Iterator;
 import java.util.List;
-import java.util.AbstractCollection;
+import java.util.logging.Logger;
 
-import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
-import org.bukkit.Server;
-import org.bukkit.event.Event.Priority;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.ChatColor;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
-
-import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.packet.Packet;
-import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.PacketListener;
-import org.jivesoftware.smackx.muc.MultiUserChat;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.Chat;
+import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.util.StringUtils;
 import org.jivesoftware.smackx.muc.DiscussionHistory;
+import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
  * BukkitXMPP for Bukkit
