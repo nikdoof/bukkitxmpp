@@ -2,3 +2,4 @@ lib/*.jar
 out
 *.class
 bukkitxmpp.jar
+/dist
