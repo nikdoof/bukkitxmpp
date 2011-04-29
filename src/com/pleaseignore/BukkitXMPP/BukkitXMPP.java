@@ -27,6 +27,7 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
  */
 public class BukkitXMPP extends JavaPlugin implements PacketListener {
     private final BukkitXMPPPlayerListener playerListener = new BukkitXMPPPlayerListener(this);
+    private final BukkitParticipantStatusListener participantListener = new BukkitParticipantStatusListener(this);
 
     private Logger log;
 
@@ -75,6 +76,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
 
                 muc.join(nickname, "", history, 2000);
                 muc.addMessageListener(this);
+                muc.addParticipantStatusListener(participantListener);
             } catch (Exception e) {
                 log.warning("Error connecting to XMPP server " + server);
             }
