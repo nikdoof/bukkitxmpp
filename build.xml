@@ -28,6 +28,10 @@
 		<jar jarfile="${dist}/${pluginname}.jar">
 			<fileset dir="${bin}"/>
 			<fileset file="resources/plugin.yml"/>
+			  <manifest>
+			    <attribute name="Built-By" value="${user.name}"/>
+			  	<attribute name="Class-Path" value="../lib/smack.jar ../lib/smackx.jar"/>
+			  </manifest>
 		</jar>
 	</target>
 	

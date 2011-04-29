@@ -2,7 +2,9 @@ package com.pleaseignore.BukkitXMPP;
 
 import java.io.File;
 import java.util.logging.Logger;
+import java.util.Iterator;
 import java.util.List;
+import java.util.AbstractCollection;
 
 import org.bukkit.entity.Player;
 import org.bukkit.World;
@@ -53,6 +55,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
             conf.setProperty("connection.channel", "examplechannel@talk.example.org");
             conf.setProperty("connection.nickname", "MinecraftBot");
             conf.getBoolean("general.autoconnect", false);
+            conf.setProperty("commands.prefix", "!");
             conf.save();
         }
     }
@@ -147,18 +150,33 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
             p.sendMessage(msg);
         }
     }
-
+    
     public void processPacket(Packet p)
     {
         if (p instanceof Message) {
-            final Message message = (Message) p;
-            if(message.getType() == Message.Type.groupchat) {
-                if(!StringUtils.parseResource(message.getFrom()).equalsIgnoreCase(conf.getString("connection.nickname", "MinecraftBot"))) {
-                    String outmsg = ChatColor.GRAY + "[" + ChatColor.DARK_GREEN + "XMPP" + ChatColor.GRAY + "] " + ChatColor.WHITE + StringUtils.parseResource(message.getFrom()) + ": " + message.getBody();
-                    sendMCMessage(outmsg);
-                    log.info(outmsg);
-                }
-            }
+        	final Message message = (Message) p;
+        	if(message.getType() == Message.Type.groupchat) {
+        		if(!StringUtils.parseResource(message.getFrom()).equalsIgnoreCase(conf.getString("connection.nickname", "MinecraftBot"))) {
+        			if (message.getBody().startsWith(conf.getString("commands.prefix", "!"))) {
+        				if (message.getBody().substring(1).startsWith("players")) {
+        					StringBuffer buffer = new StringBuffer();
+        					for(Player x: getListeners()) {
+        						buffer.append(" ").append(x.getName());
+        					}
+        					try {
+        						muc.sendMessage("Online Players:" + buffer);
+        					} catch (Exception e) {
+        						// TODO: fault handling
+        					}
+        				}
+
+        			} else {
+        				String outmsg = ChatColor.GRAY + "[" + ChatColor.DARK_GREEN + "XMPP" + ChatColor.GRAY + "] " + ChatColor.WHITE + StringUtils.parseResource(message.getFrom()) + ": " + message.getBody();
+        				sendMCMessage(outmsg);
+        				log.info(outmsg);
+        			}
+        		}
+        	}
         }
     }
 
