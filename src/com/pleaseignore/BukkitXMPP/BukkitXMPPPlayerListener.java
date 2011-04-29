@@ -1,11 +1,10 @@
 package com.pleaseignore.BukkitXMPP;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * Handle events for all Player related events
@@ -29,6 +28,26 @@ public class BukkitXMPPPlayerListener extends PlayerListener {
         }
 
     }
-    //Insert Player related code here
+    
+    @Override
+    public void onPlayerQuit (PlayerQuitEvent event) {
+    	Player p = event.getPlayer();
+        try {
+            plugin.muc.sendMessage(p.getDisplayName() + " has left the server");
+        } catch (Exception e) {
+            // TODO: Error handling
+        }
+    }
+    
+    @Override
+    public void onPlayerJoin (PlayerJoinEvent event) {
+    	Player p = event.getPlayer();
+        try {
+            plugin.muc.sendMessage(p.getDisplayName() + " has joined the server");
+        } catch (Exception e) {
+            // TODO: Error handling
+        }
+    	
+    }
 }
 
