@@ -8,9 +8,9 @@
 	
     <path id="bukkitxmpp.classpath">
         <pathelement location="bin"/>
-        <pathelement location="../lib/craftbukkit-0.0.1-SNAPSHOT.jar"/>
-        <pathelement location="../lib/smack.jar"/>
-        <pathelement location="../lib/smackx.jar"/>
+        <pathelement location="lib/craftbukkit-0.0.1-SNAPSHOT.jar"/>
+        <pathelement location="lib/smack.jar"/>
+        <pathelement location="lib/smackx.jar"/>
     </path>
 	
 	<target name="init">
@@ -24,14 +24,15 @@
 	</target>
 	
 	<target name="dist" depends="compile">
+                <zipgroupfileset dir="lib" includes="smack*.jar" /> 
 		<mkdir dir="${dist}"/>
 		<jar jarfile="${dist}/${pluginname}.jar">
 			<fileset dir="${bin}"/>
 			<fileset file="resources/plugin.yml"/>
-			  <manifest>
-			    <attribute name="Built-By" value="${user.name}"/>
-			  	<attribute name="Class-Path" value="../lib/smack.jar ../lib/smackx.jar"/>
-			  </manifest>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+	 		  	<!--<attribute name="Class-Path" value="../lib/smack.jar ../lib/smackx.jar"/>-->
+			</manifest>
 		</jar>
 	</target>
 	
