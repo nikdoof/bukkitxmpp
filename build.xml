@@ -24,7 +24,7 @@
 	</target>
 	
 	<target name="dist" depends="compile">
-                <zipgroupfileset dir="lib" includes="smack*.jar" /> 
+                <!--<zipgroupfileset dir="lib" includes="smack*.jar" /> -->
 		<mkdir dir="${dist}"/>
 		<jar jarfile="${dist}/${pluginname}.jar">
 			<fileset dir="${bin}"/>
