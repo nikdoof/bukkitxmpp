@@ -68,7 +68,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
                 xmppconn.connect();
 
                 if (!xmppconn.isConnected()) {
-                    log.error("Unable to connect to the XMPP server, please check your config!");
+                    log.warning("Unable to connect to the XMPP server, please check your config!");
                     return;
                 }
 
@@ -149,7 +149,12 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
 
     public void sendMUCMessage(String msg) {
         if (xmppconn.isConnected() && muc.isJoined()) {
-            muc.sendMessage(msg);
+            try {
+                muc.sendMessage(msg);
+            } catch (Exception e) {
+                log.warning("Error sending MUC message");
+            }
+
         }
     }
 
