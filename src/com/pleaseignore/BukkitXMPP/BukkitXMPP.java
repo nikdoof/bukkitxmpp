@@ -66,6 +66,11 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
                 log.info("Connecting to XMPP");
                 xmppconn = new XMPPConnection(server);
                 xmppconn.connect();
+
+                if (!xmppconn.isConnected()) {
+                    log.error("Unable to connect to the XMPP server, please check your config!");
+                    return;
+
                 xmppconn.login(username, password);
 
                 log.info("Joining Room");
@@ -104,7 +109,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         log = getServer().getLogger();
 
         final File yml = new File(getDataFolder(), "BukkitXMPP.yml");
-        log.info("Path to BukkitXMLPP.yml: " + yml.getPath());
+        log.info("Path to BukkitXMPP.yml: " + yml.getPath());
         loadConfig(yml);
 
         // Register our events
@@ -141,12 +146,17 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         return list;
     }
 
+    public void sendMUCMessage(String msg) {
+        if (xmppconn.isConnected() && muc.isJoined()) {
+            muc.sendMessage(msg)
+    }
+
     public void sendMCMessage(String msg) {
         for(Player p: getListeners()) {
             p.sendMessage(msg);
         }
     }
-    
+
     public void processPacket(Packet p)
     {
         if (p instanceof Message) {
@@ -160,7 +170,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         						buffer.append(" ").append(x.getName());
         					}
         					try {
-        						muc.sendMessage("Online Players:" + buffer);
+        						sendMUCMessage("Online Players:" + buffer);
         					} catch (Exception e) {
         						// TODO: fault handling
         					}

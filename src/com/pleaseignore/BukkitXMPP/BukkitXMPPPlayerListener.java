@@ -22,32 +22,31 @@ public class BukkitXMPPPlayerListener extends PlayerListener {
         Player p = event.getPlayer();
 	String msg = event.getMessage();
         try {
-            plugin.muc.sendMessage("[" + p.getDisplayName() + "] " + msg);
+            plugin.sendMUCMessage("[" + p.getDisplayName() + "] " + msg);
         } catch (Exception e) {
             // TODO: Error handling
         }
 
     }
-    
+
     @Override
     public void onPlayerQuit (PlayerQuitEvent event) {
     	Player p = event.getPlayer();
         try {
-            plugin.muc.sendMessage(p.getDisplayName() + " has left the server");
+            plugin.sendMUCMessage(p.getDisplayName() + " has left the server");
         } catch (Exception e) {
             // TODO: Error handling
         }
     }
-    
+
     @Override
     public void onPlayerJoin (PlayerJoinEvent event) {
     	Player p = event.getPlayer();
         try {
-            plugin.muc.sendMessage(p.getDisplayName() + " has joined the server");
+            plugin.sendMUCMessage(p.getDisplayName() + " has joined the server");
         } catch (Exception e) {
             // TODO: Error handling
         }
-    	
     }
 }
 
