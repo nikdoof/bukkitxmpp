@@ -117,14 +117,12 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
 
     private void disconnect() {
 
-        if (muc instanceof MultiUserChat) {
+        if (muc instanceof MultiUserChat && muc.isJoined()) {
             muc.leave();
-            muc = null;
         }
 
-        if (xmppconn instanceof XMPPConnection) {
+        if (xmppconn instanceof XMPPConnection && xmppconn.isConnected()) {
             xmppconn.disconnect();
-            xmppconn = null;
         }
 
     }
