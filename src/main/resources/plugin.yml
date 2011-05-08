@@ -1,0 +1,6 @@
+name: BukkitXMPP
+main: com.pleaseignore.BukkitXMPP.BukkitXMPP
+version: 0.1
+author: Matalok
+description: Links Minecraft chat and a XMPP/Jabber MUC room.
+website: https://github.com/nikdoof/bukkitxmpp
