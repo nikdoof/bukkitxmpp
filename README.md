@@ -4,16 +4,17 @@ BukkitXMPP
 BukkitXMPP is a connectivity plugin that allows Minecraft chat to be mirrored
 in a XMPP MUC chatroom.
 
-Requirements
-------------
+Build Requirements
+------------------
 
-BukkitXMPP requires Smack 3.1, the JARs should be placed in the "lib" folder
-in the root of your Minecraft server install.
+BukkitXMPP uses the Maven2 build system to automatically aquire dependancies
+that the plugin requires.
+
+BukkitXMPP uses the Smack API from Ignite Realtime, a pure Java XMPP library.
 
 Setup
 -----
 
-1. Copy over smack.jar, smackx.jar into the lib folder.
 2. Copy bukkitxmpp.jar into your plugin folder
 3. Reload your server
 4. Edit the configuration in plugins/BukkitXMPP/
