@@ -82,9 +82,39 @@
 							<Implementation-Title>BukkitXMPP</Implementation-Title>
 							<Implementation-Version>${describe}</Implementation-Version>
 							<Implementation-Vendor>Matalok</Implementation-Vendor>
+							<Sealed>true</Sealed>
 						</manifestEntries>
+						<manifestSections>
+							<manifestSection>
+								<name>com/pleaseignore/BukkitXMPP/</name>
+								<manifestEntries>
+									<Sealed>true</Sealed>
+								</manifestEntries>
+							</manifestSection>
+						</manifestSections>
 					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>junit:junit</exclude>
+									<exclude>org.bukkit:*</exclude>
+								</excludes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
