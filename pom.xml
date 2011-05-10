@@ -18,38 +18,6 @@
 	<scm>
 		<url>git://github.com/nikdoof/bukkitxmpp.git</url>
 	</scm>
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>libs-release</name>
-			<url>http://repo.bukkit.org/artifactory/libs-release</url>
-		</repository>
-		<repository>
-			<snapshots />
-			<id>snapshots</id>
-			<name>libs-snapshot</name>
-			<url>http://repo.bukkit.org/artifactory/libs-snapshot</url>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>central</id>
-			<name>plugins-release</name>
-			<url>http://repo.bukkit.org/artifactory/plugins-release</url>
-		</pluginRepository>
-		<pluginRepository>
-			<snapshots />
-			<id>snapshots</id>
-			<name>plugins-snapshot</name>
-			<url>http://repo.bukkit.org/artifactory/plugins-snapshot</url>
-		</pluginRepository>
-	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.bukkit</groupId>
