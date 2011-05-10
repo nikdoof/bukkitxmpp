@@ -201,7 +201,8 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         					try {
         						sendMUCMessage("Online Players:" + buffer);
         					} catch (Exception e) {
-        						// TODO: fault handling
+							// TODO: Error handling
+							e.printStackTrace();
         					}
         				}
 

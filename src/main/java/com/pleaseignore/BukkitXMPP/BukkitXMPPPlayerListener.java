@@ -49,6 +49,7 @@ public class BukkitXMPPPlayerListener extends PlayerListener {
             plugin.sendMUCMessage("[" + p.getDisplayName() + "] " + msg);
         } catch (Exception e) {
             // TODO: Error handling
+            e.printStackTrace();
         }
 
     }
@@ -60,6 +61,7 @@ public class BukkitXMPPPlayerListener extends PlayerListener {
             plugin.sendMUCMessage(p.getDisplayName() + " has left the server");
         } catch (Exception e) {
             // TODO: Error handling
+            e.printStackTrace();
         }
     }
 
@@ -70,6 +72,7 @@ public class BukkitXMPPPlayerListener extends PlayerListener {
             plugin.sendMUCMessage(p.getDisplayName() + " has joined the server");
         } catch (Exception e) {
             // TODO: Error handling
+            e.printStackTrace();
         }
     }
 }
