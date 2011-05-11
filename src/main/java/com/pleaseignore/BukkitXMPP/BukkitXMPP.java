@@ -45,7 +45,7 @@ import org.jivesoftware.smackx.muc.DiscussionHistory;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
- * BukkitXMPP for Bukkit
+ * XMPP Plugin for Bukkit
  *
  * @author Matalok
  */
@@ -61,6 +61,11 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
     private String nickname;
     private Configuration conf;
 
+    /**
+     * Loads a configuration file
+     *
+     * @param yamlfile File to parse
+     */
     private void loadConfig(File yamlfile) {
         conf = new Configuration(yamlfile);
         if(yamlfile.exists()) {
@@ -77,6 +82,9 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         }
     }
 
+    /**
+     * Connects to a XMPP server and joins the configured MUC rooms.
+     */
     private void connectAndJoin() {
 
         String server = conf.getString("connection.server", "");
@@ -115,6 +123,9 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         }
     }
 
+    /**
+     * Leave any active MUC rooms and disconnect from the XMPP server
+     */
     private void disconnect() {
 
         if (muc instanceof MultiUserChat && muc.isJoined()) {
@@ -127,6 +138,9 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
 
     }
 
+    /**
+     * Enables the XMPP plugin
+     */
     public void onEnable() {
 
         log = getServer().getLogger();
@@ -150,12 +164,18 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
             connectAndJoin();
     }
 
+    /**
+     * Disables the XMPP plugin.
+     */
     public void onDisable() {
         disconnect();
         PluginDescriptionFile pdfFile = this.getDescription();
         log.info( pdfFile.getName() + " version " + pdfFile.getVersion() + " disabled");
     }
 
+    /**
+     * Get a list of current players on the Server
+     */
     public List<Player> getListeners() {
         List<Player> list = null;
         for(World world: getServer().getWorlds()) {
@@ -169,6 +189,11 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         return list;
     }
 
+    /**
+     * Send a message to the configured MUC room.
+     *
+     * @param msg Message to send
+     */
     public void sendMUCMessage(String msg) {
         if (xmppconn.isConnected() && muc.isJoined()) {
             try {
@@ -180,12 +205,22 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
         }
     }
 
+    /**
+     * Send a message to the Minecraft chat.
+     *
+     * @param msg Message to send
+     */
     public void sendMCMessage(String msg) {
         for(Player p: getListeners()) {
             p.sendMessage(msg);
         }
     }
 
+    /**
+     * Process a incoming XMPP packet
+     *
+     * @param p the (@link Packet) to process
+     */
     public void processPacket(Packet p)
     {
         if (p instanceof Message) {
