@@ -75,10 +75,9 @@
 						</goals>
 						<configuration>
 							<artifactSet>
-								<excludes>
-									<exclude>junit:junit</exclude>
-									<exclude>org.bukkit:*</exclude>
-								</excludes>
+								<includes>
+									<include>jivesoftware:*</include>
+								</includes>
 							</artifactSet>
 						</configuration>
 					</execution>
