@@ -116,7 +116,7 @@ public class BukkitXMPP extends JavaPlugin implements PacketListener {
                 muc.addMessageListener(this);
                 muc.addParticipantStatusListener(participantListener);
             } catch (Exception e) {
-                log.warning("Error connecting to XMPP server " + server);
+                log.warning("Error connecting to XMPP server " + server + ": " + e.toString());
             }
         } else {
             log.warning("Incomplete configration for XMPP server");
